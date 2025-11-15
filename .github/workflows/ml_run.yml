@@ -1,0 +1,36 @@
+name: Titanic ML Run
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  run-ml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run ML script
+      run: |
+        python app.py
+
+    - name: Upload chart artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: titanic-charts
+        path: |
+          confusion_matrix.png
+          survival_pie_chart.png
+        retention-days: 7
