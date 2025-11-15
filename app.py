@@ -58,6 +58,7 @@ cm = confusion_matrix(y_test, y_pred)
 fig, ax = plt.subplots(figsize=(6, 5))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Not Survived', 'Survived'], yticklabels=['Not Survived', 'Survived'], ax=ax)
 plt.title('Confusion Matrix')
+fig.savefig("confusion_matrix.png")
 st.pyplot(fig)
 
 # Sidebar for user input
@@ -93,4 +94,5 @@ fig_pie, ax_pie = plt.subplots(figsize=(5, 5))
 ax_pie.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors, explode=(0.1, 0))
 ax_pie.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 st.subheader("Titanic Survival Distribution")
+fig_pie.savefig("survival_pie_chart.png")
 st.pyplot(fig_pie)
